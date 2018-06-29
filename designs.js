@@ -1,6 +1,6 @@
 $(document).ready(function() {
     $("#sizePicker").submit(function makeGrid(){
-        4('table tr').remove();
+        $('table tr').remove();
         var rows = $("#input_height").val();
         var cols = $("#input_weight").val();
             for(var i = 1; i <= rows; i++) {
