@@ -1,30 +1,34 @@
-$(document).ready(function() {
-    $("#sizePicker").submit(function makeGrid(){
-        $('table tr').remove();
-        var rows = $("#input_height").val();
-        var cols = $("#input_weight").val();
-            for(var i = 1; i <= rows; i++) {
-                $("table").append("<tr></tr>");
-                for(var j = 1; j <= cols; j++){
-                    $("tr:last").append("<td></td>");
-                    $("td").attr("class", "cells");
-                }
+var height, width, color;
 
-            }
-         grid.preventDefault();   
+$("#sizePicker").submit(function(event) {
+    event.preventDefault();
+    height = $("#inputHeight").val();
+    width = $("#inputWeight").val();
+    makeGrid(height, width);
+    console.log("Height" + height + "and width" + width);
 
-         $(".cells").click(function(event){
-            var paint = $("#colorPicker").val();
-            $(event.target).css("background-color", paint)
-        })
-        
+
+})
+
+function makeGrid(x, y) {
+    $("tr").remove();
+
+    for (var i = 1; i <= x; i++){
+        $("#pixelCanvas").append("<tr id=table" + i + "></tr>");
+        for (var j = 1; j <= y; j++){
+            $("#table" + i).append("<td></td>");
+        }
+    }
+    $("td").click(function addColor(){
+        color = $("#colorPicker").val();
+
+        if ($(this).attr("style")){
+            $(this).removeAttr("style")
+        } else {
+            $(this).attr("style", "background-color:" + color);
+            
+        }
     })
 
 
-});
-
-
-
-// Your code goes here! 
-
-
+}
